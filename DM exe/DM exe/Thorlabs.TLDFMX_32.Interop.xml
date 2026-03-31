@@ -1,0 +1,681 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thorlabs.TLDFMX_32.Interop</name>
+    </assembly>
+    <members>
+        <member name="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes">
+            <summary>
+            Possible Error Codes
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ErrorCodes.Successfull">
+            <summary>
+            No error, everything is fine
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ErrorCodes.ErrorOffset">
+            <summary>
+            Error indicator
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ErrorCodes.NoData">
+            <summary>
+            No driver extension data
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ErrorCodes.NotInit">
+            <summary>
+            Device wasn't initialized by the extended driver
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ErrorCodes.Unknown">
+            <summary>
+            An unspecified error occured
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFMX_32.Interop.SelfTestFlags">
+            <summary>
+            Possible flags of the self test result
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.SelfTestFlags.NoDataFlag">
+            <summary>
+            No extension driver data available
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.SelfTestFlags.InitializedFlag">
+            <summary>
+            Device was initialized by extended driver
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.SelfTestFlags.IsFactoryPatternFlag">
+            <summary>
+            Base pattern wasn't manipulated
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.SelfTestFlags.IsFactorySettingsFlag">
+            <summary>
+            Comibination of 'InitializedFlag' and 'IsFactoryPatternFlag'
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.SelfTestFlags.IsFlippedFlag">
+            <summary>
+            Device is flipped
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.SelfTestFlags.IsRotatedFlag">
+            <summary>
+            Device is rotated
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFMX_32.Interop.RotationFlags">
+            <summary>
+            Rotation flags to specify the Rotation Mode
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.RotationFlags.NoRotation">
+            <summary>
+            Device is not rotated
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.RotationFlags.Rotate45Degree">
+            <summary>
+            Device is rotated by 45°
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.RotationFlags.Rotate90Degree">
+            <summary>
+            Device is rotated by 90°
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.RotationFlags.Rotate135Degree">
+            <summary>
+            Device is rotated by 135°
+            Can also be achieved by combining 'Rotate45Deg' and 'Rotate90Deg'.
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFMX_32.Interop.FlipFlags">
+            <summary>
+            Flip flags to specify the Flip Mode
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.FlipFlags.NoFlip">
+            <summary>
+            Device is not flipped
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.FlipFlags.FlipHorizontal">
+            <summary>
+            Device is flipped horizontal
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.FlipFlags.FlipVertical">
+            <summary>
+            Device is flipped vertical
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.FlipFlags.FlipHorizontalVertical">
+            <summary>
+            Device is flipped horizontal and vertical
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFMX_32.Interop.ZernikeFlags">
+            <summary>
+            Zernike flags to select calculations
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.NoZernike">
+            <summary>
+            No Zernike
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.Astigmatism45Degree">
+            <summary>
+            Astigmatism 45 Degree
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.Defocus">
+            <summary>
+            Defocus
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.Astigmatism0Degree">
+            <summary>
+            Astigmatism 0 Degree
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.TrefoilY">
+            <summary>
+            Trefoil Y
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.ComaX">
+            <summary>
+            Coma X
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.ComaY">
+            <summary>
+            Coma Y
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.TrefoilX">
+            <summary>
+            Trefoil X
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.TetrafoilY">
+            <summary>
+            Tetrafoil Y
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.SecondaryAstigmatismY">
+            <summary>
+            Secondary Astigmatism Y
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.SphericalAberation3">
+            <summary>
+            3'rd Order Spherical Abberation
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.SecondaryAstigmatismX">
+            <summary>
+            Secondary Astigmatism X
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.TetrafoilX">
+            <summary>
+            Tetrafoil X
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.ZernikeFlags.All">
+            <summary>
+            All Zernikes
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFMX_32.Interop.TLDFMX">
+            <summary>
+            The extension class for the deformable mirror 32Bit driver.
+            This class extends the basic driver TLDFM_32.
+            </summary>
+        </member>
+        <member name="P:Thorlabs.TLDFMX_32.Interop.TLDFMX.FindPattern">
+            <summary>
+            Gets the Find Pattern of DMP40 Device
+            </summary>
+        </member>
+        <member name="P:Thorlabs.TLDFMX_32.Interop.TLDFMX.StringLength">
+            <summary>
+            Gets the exspected string array size or StringBuilder capacity
+            </summary>
+        </member>
+        <member name="P:Thorlabs.TLDFMX_32.Interop.TLDFMX.Device">
+            <summary>
+            Gets the Device Driver instance
+            </summary>
+        </member>
+        <member name="P:Thorlabs.TLDFMX_32.Interop.TLDFMX.ZernikeSliderCount">
+            <summary>
+                
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.Finalize">
+            <summary>
+            Class Destructor
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.#ctor(System.IntPtr)">
+            <summary>
+            This function creates an IVI instrument driver session, typically using the C session instrument handle.
+            </summary>
+            <param name="instrumentHandle">
+            The instrument handle that is used to create an IVI instrument driver session.
+            </param>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.#ctor(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            This function initializes the instrument driver session and performs the following initialization actions:
+            
+            (1) Opens a session to the Default Resource Manager resource and a session to the selected device using the Resource Name.
+            (2) Performs an identification query on the Instrument.
+            (3) Resets the instrument to a known state.
+            (4) Resets the extension parameters to factory defaults.
+            (5) Sends initialization commands to the instrument.
+            (6) Returns an instrument handle which is used to differentiate between different sessions of this instrument driver.
+            
+            Note:
+            Each time this function is invoked an unique session is opened.
+            </summary>
+            <param name="resourceName"></param>
+            <param name="idQuery"></param>
+            <param name="reset"></param>
+            <remarks>
+            The resource string can be get from <see cref="P:Thorlabs.TLDFMX_32.Interop.TLDFMX.FindPattern"/> or
+            <see cref="F:Thorlabs.TLDFM_32.Interop.TLDFM.FindPattern"/>
+            </remarks>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.Reset">
+            <summary>
+            Resets extension parameters to factory defaults.
+            </summary>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.SelfTest(System.Int16@,System.Text.StringBuilder)">
+            <summary>
+            This function causes the driver extension to perform a self-test and returns the result of that self-test.
+            </summary>
+            <param name="selfTestResult">Self Test Result Code <see cref="T:Thorlabs.TLDFMX_32.Interop.SelfTestFlags"/> </param>
+            <param name="selfTestMessage">Self Test Result Message</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.ErrorQuery(System.Int32@,System.Text.StringBuilder)">
+            <summary>
+            Queries the driver extension and returns extension-specific error information.
+            </summary>
+            <param name="errorCode">Numeric Error Representation <see cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/></param>
+            <param name="errorMessage">Error Code Translation</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.RevisionQuery(System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>
+            Returns the extension driver and the DMP40 firmware revisons
+            </summary>
+            <param name="driverRevision">Revision of Driver Extension</param>
+            <param name="firmwareRevision">DMP40 Firmware Revision</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.MeasureSystemParameters(System.Boolean,System.Single[],System.Double[],System.Int32@)">
+            <summary>
+            Measure rotation, flip and maximum DMP40 zernike amplitudes.
+            </summary>
+            <param name="isFirstStep">Marks the starting point</param>
+            <param name="measuredZernikeAmplitudes">Measured Zernike Amplitudes of WFS</param>
+            <param name="nextMirrorPattern">
+            The pattern bo be set prior getting the next measured zernike amplitudes.
+            </param>
+            <param name="remainingSteps">Determines how often the method still have to be called</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.Relax(Thorlabs.TLDFM_32.Interop.DevicePart,System.Boolean,System.Boolean,System.Double[],System.Double[],System.Int32@)">
+            <summary>
+            This function relaxes the piezo elements of the specified DMP40 parts.
+            </summary>
+            <param name="devicePart">Part of the device to be relaxed <see cref="T:Thorlabs.TLDFM_32.Interop.DevicePart"/></param>
+            <param name="start"></param>
+            <param name="reload">Set start voltages after relaxing</param>
+            <param name="mirrorPattern">The Voltage Pattern of the Mirror Part</param>
+            <param name="armsPattern">The Voltage Pattern of the Arms Part</param>
+            <param name="remainingSteps">Recall method until '0'</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.SetSingleVoltageSetPoint(System.Int32,System.Double)">
+            <summary>
+            Applies the given voltage to the specified segment of the corresponding device part.
+            </summary>
+            <remarks>
+            This function manipulates the base pattern and take care of the zernike change.
+            </remarks>
+            <param name="devicePart">
+            This parameter determines the target part the voltage to be set.
+            </param>
+            <param name="segmentID">ID of the segment to be changed</param>
+            <param name="voltage">The new target voltage for the selected segment.</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.SetVoltagesSetPoint(System.Double[])">
+            <summary>
+            Applies the given voltages to the segments of the corresponding device part(s).
+            </summary>
+            <remarks>
+            This function manipulates the base pattern and take care of the zernike change.
+            </remarks>
+            <param name="devicePart">
+            This parameter determines the target part the voltages have to be set.
+            </param>
+            <param name="mirrorVoltages">The new target voltages of the mirror device part.</param>
+            <param name="armVoltages">The new target voltages of the arm device part.</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.CalculateSingleZernikePattern(Thorlabs.TLDFMX_32.Interop.ZernikeFlags,System.Double,System.Double[])">
+            <summary>
+            Calculates segment voltages for the selected zernike.
+            </summary>
+            <param name="zernike">Zernike to be calculated <see cref="!:Thorlabs.TLDFMX_64.Interop.ZernikeFlags"/></param>
+            <param name="zernikeAmplitude">Amplitude of selected zernike</param>
+            <param name="mirrorPattern">
+            Ready to set Voltage Pattern.
+            Is range checked by default.
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.SetPatternRangeCheck"/>
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.GetPatternRangeCheck"/>
+            </param>
+            <param name="armsPattern">
+            Ready to set Voltage Pattern.
+            Is range checked by default.
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.SetPatternRangeCheck"/>
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.GetPatternRangeCheck"/>
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.CalculateZernikePattern(Thorlabs.TLDFMX_32.Interop.ZernikeFlags,System.Double[],System.Double[])">
+            <summary>
+            Calculates segment voltages for the specified zernikes.
+            </summary>
+            <param name="zernikes">Zernikes to be calculated <see cref="!:Thorlabs.TLDFMX_64.Interop.ZernikeFlags"/></param>
+            <param name="zernikeAmplitudes">Amplitudes of selected zernikes</param>
+            <param name="mirrorPattern">
+            Ready to set Voltage Pattern. Is range checked by default.
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.SetPatternRangeCheck"/>
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.GetPatternRangeCheck"/>
+            </param>
+            <param name="armsPattern">
+            Ready to set Voltage Pattern.
+            Is range checked by default.
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.SetPatternRangeCheck"/>
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.TLDFMX.GetPatternRangeCheck"/>
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="!:Thorlabs.TLDFMX_64.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.ConvertMeasuredZernikeAmplitudes(System.Single[],System.Double[]@)">
+            <summary>
+            Converts Zernike Amplitudes measured by WFS into device zernike amplitudes.
+            </summary>
+            <param name="measuredZernikeAmplitudes">Zernike Amplitudes measured by WFS</param>
+            <param name="deviceZernikeAmplitudes">DMP40 zernike slider position offsets</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.SetFlipMode(Thorlabs.TLDFMX_32.Interop.FlipFlags)">
+            <summary>
+            Sets the Flip Mode
+            </summary>
+            <param name="flipMode">
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.FlipFlags"/>
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.GetFlipMode(Thorlabs.TLDFMX_32.Interop.FlipFlags@)">
+            <summary>
+            Gets the Flip Mode
+            </summary>
+            <param name="flipMode">
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.FlipFlags"/>
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.SetRotationMode(Thorlabs.TLDFMX_32.Interop.RotationFlags)">
+            <summary>
+            Sets the Rotation Mode
+            </summary>
+            <param name="rotationMode">
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.RotationFlags"/>
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.GetRotationMode(Thorlabs.TLDFMX_32.Interop.RotationFlags@)">
+            <summary>
+            Gets the Rotation Mode
+            </summary>
+            <param name="rotationMode">
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.RotationFlags"/>
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.SetPatternRangeCheck(System.Boolean)">
+            <summary>
+            Enable mirror pattern range check.
+            <seealso cref="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.CalculateSingleZernikePattern(Thorlabs.TLDFMX_32.Interop.ZernikeFlags,System.Double,System.Double[])"/>
+            <seealso cref="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.CalculateZernikePattern(Thorlabs.TLDFMX_32.Interop.ZernikeFlags,System.Double[],System.Double[])"/>
+            </summary>
+            <param name="enable">Enable Mirror Pattern range check</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.GetPatternRangeCheck(System.Boolean@)">
+            <summary>
+            Check mirror pattern range check state.
+            <seealso cref="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.CalculateSingleZernikePattern(Thorlabs.TLDFMX_32.Interop.ZernikeFlags,System.Double,System.Double[])"/>
+            <seealso cref="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.CalculateZernikePattern(Thorlabs.TLDFMX_32.Interop.ZernikeFlags,System.Double[],System.Double[])"/>
+            </summary>
+            <param name="enabled">Enabled Mirror Pattern range check</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.GetParameters(System.Double@,System.Double@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Get necessary configuration parameters
+            </summary>
+            <param name="minimumZernikeAmplitude">Minimal Zernike Amplitude</param>
+            <param name="maximumZernikeAmplitude">Maximal Zernike Amplitude</param>
+            <param name="zernikeCount">Maximum Zernike Amplitudes Array Size</param>
+            <param name="measurementSteps">Amount of Measurement Steps</param>
+            <param name="relaxSteps">Amount of Relax Steps</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.GetSystemParameters(Thorlabs.TLDFMX_32.Interop.RotationFlags@,Thorlabs.TLDFMX_32.Interop.FlipFlags@,System.Double[]@,System.Boolean@)">
+            <summary>
+            Returns rotation, flip and maximum reachable DMP40 zernike amplitudes.
+            </summary>
+            <param name="rotation">Iterated Rotation-Mode</param>
+            <param name="flip">Iterated Flip-Mode</param>
+            <param name="maxReachableZernikeAmplitudes">Iterated reachable zernike amplitudes</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.GetFlatWaveFront(Thorlabs.TLDFMX_32.Interop.ZernikeFlags,System.Single[],System.Double[]@,System.Double[]@)">
+            <summary>
+            Returns Zernike Amplitudes and Voltage Pattern to achieve a Flat WaveFront.
+            </summary>
+            <param name="zernikes">Specified the zernikes to be flatten.</param>
+            <param name="measuredZernikeAmplitudes">Measured WFS Zernike amplitudes.</param>
+            <param name="deviceZernikeAmplitudes">
+            Absolute Zernike amplitudes to set for a flat wave front.
+            </param>
+            <param name="voltagePattern">
+            The voltage pattern to set for a flat wave front.
+            <para>
+            Note: This pattern can also be achieved by calling TLDFMX_get_zernike_pattern with
+                  'Zernikes' and 'Device Zernike Amplitudes' as input.
+            </para>
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            <seealso cref="T:Thorlabs.TLDFMX_32.Interop.ErrorCodes"/>
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.TLDFMX.Dispose">
+            <summary>
+            Disposes Driver Object
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.stringLength">
+            <summary>
+            Maximum String Length
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.vi_instr_warning_offset">
+            <summary>
+            Visa Warning Offset
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.vi_instr_error_offset">
+            <summary>
+            Visa Error Offset
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.nativeLibrary">
+            <summary>
+            Native Library to load
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.init(System.String,System.UInt16,System.UInt16,System.IntPtr@)">
+            <summary>
+            Initialize the Device
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.close(System.Runtime.InteropServices.HandleRef)">
+            <summary>
+            Close the Device
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.reset(System.Runtime.InteropServices.HandleRef)">
+            <summary>
+            Reset the Device
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.self_test(System.Runtime.InteropServices.HandleRef,System.Int16@,System.Text.StringBuilder)">
+            <summary>
+            Test the Extension Driver
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.error_query(System.Runtime.InteropServices.HandleRef,System.Int32@,System.Text.StringBuilder)">
+            <summary>
+            Check for Errors
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.revision_query(System.Runtime.InteropServices.HandleRef,System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>
+            Query Versions
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.relax(System.Runtime.InteropServices.HandleRef,System.UInt32,System.UInt16,System.UInt16,System.Double[],System.Double[],System.Int32@)">
+            <summary>
+            This function calculates neccessary relax patterns for the specified piezo parts of the Deformable Mirror.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.measure_system_parameters(System.Runtime.InteropServices.HandleRef,System.Boolean,System.Single[],System.Double[],System.Int32@)">
+            <summary>
+            This function calculates test patterns and measures the system for rotation, flip and maximum achievable device zernike amplitudes.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.get_flat_wavefront(System.Runtime.InteropServices.HandleRef,System.UInt32,System.Single[],System.Double[],System.Double[])">
+            <summary>
+            Gets absolute device Zernike amplitudes and voltage pattern to achieve a flat wave-front.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.set_single_voltage_setpoint(System.Runtime.InteropServices.HandleRef,System.Int32,System.Double)">
+            <summary>
+            Updates the voltage of the specified mirror segment to the given voltage set point.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.set_voltages_setpoint(System.Runtime.InteropServices.HandleRef,System.Double[])">
+            <summary>
+            Updates the given voltage set points of the mirror segments.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.calculate_single_zernike_pattern(System.Runtime.InteropServices.HandleRef,System.UInt32,System.Double,System.Double[])">
+            <summary>
+            Calculates a mirror segments voltage pattern to achieve the specified zernike shape.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.calculate_zernike_pattern(System.Runtime.InteropServices.HandleRef,System.UInt32,System.Double[],System.Double[])">
+            <summary>
+            Calculates a mirror segments voltage pattern to achieve the specified zernike shapes.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.set_flip_mode(System.Runtime.InteropServices.HandleRef,System.UInt32)">
+            <summary>
+            Specify if the calculations have to be flipped within your setup.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.get_flip_mode(System.Runtime.InteropServices.HandleRef,System.UInt32@)">
+            <summary>
+            Gets the set flip mode.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.set_rotation_mode(System.Runtime.InteropServices.HandleRef,System.UInt32)">
+            <summary>
+            Specify if the calculations have to be rotated within your setup.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.get_rotation_mode(System.Runtime.InteropServices.HandleRef,System.UInt32@)">
+            <summary>
+            Gets the set rotation mode.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.set_pattern_range_check(System.Runtime.InteropServices.HandleRef,System.UInt16)">
+            <summary>
+            Enable or disable the voltage pattern range check.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.get_pattern_range_check(System.Runtime.InteropServices.HandleRef,System.UInt16@)">
+            <summary>
+            Gets the voltage pattern range check state.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.get_parameters(System.Runtime.InteropServices.HandleRef,System.Double@,System.Double@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Gets necessary parameter information.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.get_system_parameters(System.Runtime.InteropServices.HandleRef,System.UInt32@,System.UInt32@,System.Double[],System.Boolean@)">
+            <summary>
+            Gets measured rotation mode, flip mode and maximum achievable device zernike amplitudes.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.convert_wfs_zernike_amplitudes(System.Runtime.InteropServices.HandleRef,System.Single[],System.Double[])">
+            <summary>
+            Converts measured Zernike amplitudes into device Zernike amplitudes and fixes the array position.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFMX_32.Interop.NativeMethods.PInvokeExtension.error_message(System.Runtime.InteropServices.HandleRef,System.Int32,System.Text.StringBuilder)">
+            <summary>
+            This function translates the error return value from a VXIPnP instrument driver function to a user-readable string.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thorlabs.TLDFM_32.Interop</name>
+    </assembly>
+    <members>
+        <member name="T:Thorlabs.TLDFM_32.Interop.DevicePart">
+            <summary>
+            Represents the two main parts of the DMP40.
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.DevicePart.Mirror">
+            <summary>
+            Only targeting to mirror segments
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.DevicePart.Arms">
+            <summary>
+            Only targeting to arm segments
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.DevicePart.Both">
+            <summary>
+            Targeting to mirror and arm segments
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFM_32.Interop.USBAccessMode">
+            <summary>
+            Represents lock mode for driver usage
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.USBAccessMode.NoLock">
+            <summary>
+            Driver isn't locked
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.USBAccessMode.ExclusiveLock">
+            <summary>
+            Driver is locked exclusivly to the caller
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.USBAccessMode.SharedLock">
+            <summary>
+            Driver is locked but can accessed by several instances (multi lock)
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFM_32.Interop.SelfTestCodes">
+            <summary>
+            Self Test Return Codes
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.SelfTestCodes.Success">
+            <summary>
+            No Instrument Errors
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.SelfTestCodes.PowerError">
+            <summary>
+            Internal/External Power Error
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.SelfTestCodes.TemperatureError">
+            <summary>
+            Temperatures are close to the limits
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.SelfTestCodes.SelfTestError">
+            <summary>
+            Error during self test
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFM_32.Interop.ResourceManagerHResultCodes">
+            <summary>
+            NI VISA ResourceManager HResult Codes
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.ResourceManagerHResultCodes.NoDevice">
+            <summary>
+            Device isn't connected
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.ResourceManagerHResultCodes.MissingNIVISACOM">
+            <summary>
+            NI VISA COM assembly isn't installed or registered
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFM_32.Interop.TLDFM">
+            <summary>
+            The class for the deformable mirror 32Bit driver.
+            </summary>
+        </member>
+        <member name="F:Thorlabs.TLDFM_32.Interop.TLDFM.FindPattern">
+            <summary>
+            Find Pattern for Deformable Mirror Device
+            </summary>
+        </member>
+        <member name="T:Thorlabs.TLDFM_32.Interop.TLDFM.StatusCallback">
+            <summary>
+            Delegate description for any status callback
+            </summary>
+            <param name="vi"></param>
+            <param name="eventType">Type of the event</param>
+            <param name="ev">The event</param>
+            <param name="userHndl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Thorlabs.TLDFM_32.Interop.TLDFM.StatusMessageCallback">
+            <summary>
+            Special delegate description to receive device pushed status messages
+            </summary>
+            <param name="statusMessage">The string representation of the status</param>
+        </member>
+        <member name="P:Thorlabs.TLDFM_32.Interop.TLDFM.StringLength">
+            <summary>
+            Gets the minimum string length for returned strings
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.Finalize">
+            <summary>
+            Class Desctructor
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.#ctor(System.IntPtr)">
+            <summary>
+            This function creates an IVI instrument driver session, typically using the C session instrument handle.
+            </summary>
+            <param name="Instrument_Handle">
+            The instrument handle that is used to create an IVI instrument driver session.
+            </param>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.#ctor(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            This function initializes the instrument driver session and performs the following initialization actions:
+            
+            (1) Opens a session to the Default Resource Manager resource and a session to the selected device using the Resource Name.
+            (2) Performs an identification query on the Instrument.
+            (3) Resets the instrument to a known state.
+            (4) Sends initialization commands to the instrument.
+            (5) Returns an instrument handle which is used to differentiate between different sessions of this instrument driver.
+            
+            Notes:
+            (1) Each time this function is invoked an unique session is opened.  
+            </summary>
+            <param name="Resource_Name">
+            This parameter specifies the interface of the device that is to be initialized. The exact syntax to be used for this parameter is shown in the note below.
+            </param>
+            <param name="ID_Query">
+            Performs an In-System Verification.
+            Checks if the resource matches the DMP40 vendor and product id.
+            </param>
+            <param name="Reset_Device">
+            Performs Reset operation and places the instrument in a pre-defined reset state.
+            </param>
+            <remarks>
+            The resource string can be get from <see cref="F:Thorlabs.TLDFM_32.Interop.TLDFM.FindPattern"/>
+            </remarks>
+        </member>
+        <member name="P:Thorlabs.TLDFM_32.Interop.TLDFM.Handle">
+            <summary>
+            Gets the instrument handle.
+            </summary>
+            <value>
+            The value is the HandleRef that represents the handle to the instrument.
+            </value>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_device_count(System.UInt32@)">
+             <summary>
+             Searches for connected DMP40 devices.
+             </summary>
+             <param name="deviceCount">Found connected DMP40 devices</param>
+             <returns>
+             Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+             
+             Completition Codes
+             ----------------------------------------------------------------
+             VI_SUCCESS              Initialization successful
+             
+            
+             Error Codes
+             ----------------------------------------------------------------
+             VI_ERROR_RSRC_NFOUND    Driver interface isn't installed or
+                                     Driver is locked by another app  or
+                                     No Device is connected
+             
+             
+             Vendor Specific Codes
+             ----------------------------------------------------------------
+             For error codes and descriptions <see cref="M:Thorlabs.TLDFM_32.Interop.NativeMethods.PInvoke.error_message(System.Runtime.InteropServices.HandleRef,System.Int32,System.Text.StringBuilder)"/>.
+             </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_device_information(System.UInt32,System.Text.StringBuilder,System.Text.StringBuilder,System.Text.StringBuilder,System.Boolean@,System.Text.StringBuilder)">
+            <summary>
+            Returns the basic information of the specified device.
+            </summary>
+            <param name="deviceIndex">Specifies the device</param>
+            <param name="manufacturer">Device Manufacturer</param>
+            <param name="instrumentName">Instrument Name</param>
+            <param name="serialNumber">Serial Number</param>
+            <param name="deviceAvailable">False if the device is already in use</param>
+            <param name="resourceName">Resource Name of the device for the constructor</param>
+            <returns></returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.reset">
+            <summary>
+            Places the instrument in a default state.
+            </summary>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS              Reset ooperation successful
+            VI_WARN_NSUP_RESET      Reset not supported
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.self_test(System.Int16@,System.Text.StringBuilder)">
+            <summary>
+            This function causes the instrument to perform a self-test and returns the result of that self-test.
+            </summary>
+            <param name="Self_Test_Result">
+            Numeric result from self-test operation 
+            0 = no error (test passed)
+            </param>
+            <param name="Self_Test_Message">
+            Self-test status message.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS              Self-test operation successful
+            VI_WARN_NSUP_SELF_TEST  Self-test not supported
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.error_query(System.Int32@,System.Text.StringBuilder)">
+            <summary>
+            Queries the instrument and returns instrument-specific error information.
+            </summary>
+            <param name="Error_Code">
+            Instrument error code.
+            </param>
+            <param name="Error_Message">
+            Error message.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS                Error query operation successful
+            VI_WARN_NSUP_ERROR_QUERY  Error query not supported
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.revision_query(System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>
+            This function returns the revision of the instrument driver and the firmware revision of the instrument being used.
+            </summary>
+            <param name="Instrument_Driver_Revision">
+            Instrument driver revision.Instrument driver revision.
+            </param>
+            <param name="Firmware_Revision">
+            Instrument firmware revision.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS               Revision query successful
+            VI_WARN_NSUP_REV_QUERY   Instrument revision query not supported
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_USB_access_mode(Thorlabs.TLDFM_32.Interop.USBAccessMode,System.String,System.Text.StringBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="Access_Mode">
+            
+            </param>
+            <param name="Requested_Key">
+            
+            </param>
+            <param name="Access_Key">
+            
+            </param>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_segment_voltage(System.UInt32,System.Double@)">
+            <summary>
+            This function returns the voltage of the segment with the given index.
+            </summary>
+            <param name="Segment_Index">
+            This parameter accepts the index of the mirror segment.
+            
+            Valid range: 0 ... (total no. of segments - 1)
+            
+            For the total number of segments call function get_device_configuration.
+            
+            </param>
+            <param name="Segment_Voltage">
+            This parameter returns the voltage of the segment with the given index in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS              Get Segment Voltage operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_segment_voltage(System.UInt32,System.Double)">
+            <summary>
+            This function sets the voltage of the segment with the given index.
+            </summary>
+            <param name="Segment_Index">
+            This parameter accepts the index of the mirror segment.
+            
+            Valid range: 0 ... (total no. of segments - 1)
+            
+            For the total number of segments call function get_device_configuration.
+            
+            </param>
+            <param name="Segment_Voltage">
+            This parameter determines the voltage of the segment in volts.
+            
+            Valid range: (Segment Voltage Min) ... (Segment Voltage Max)
+            
+            Call function get_device_configuration to get the valid voltage range.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS              Get Segment Voltage operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_segment_voltages(System.Double[])">
+            <summary>
+            This function returns the voltages of all segments.
+            </summary>
+            <param name="Segment_Voltages">
+            This parameter returns the voltage of all segments in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_segment_voltages(System.Double[])">
+            <summary>
+            This function sets the voltage of all segments.
+            </summary>
+            <param name="Segment_Voltages">
+            This parameter sets the voltage of all segments in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_tilt_voltage(System.UInt32,System.Double@)">
+            <summary>
+            This function returns the voltage of the tilt element with the given index.
+            </summary>
+            <param name="Tilt_Index">
+            This parameter accepts the index of the tilt element.
+            
+            Valid range: 0 ... (total no. of tilt elements - 1)
+            
+            Call function get_device_configuration for the total number of tilt elements.
+            
+            </param>
+            <param name="Tilt_Voltage">
+            This parameter determines the voltage of the tilt element in volts.
+            
+            Valid range: (Tilt Voltage Min) ... (Tilt Voltage Max)
+            
+            Call function get_device_configuration to get the valid voltage range.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_tilt_voltage(System.UInt32,System.Double)">
+            <summary>
+            This function sets the voltage of the tilt element with the given index.
+            </summary>
+            <param name="Tilt_Index">
+            This parameter accepts the index of the tilt element.
+            
+            Valid range: 0 ... (total no. of tilt elements - 1)
+            
+            Call function get_device_configuration for the total number of tilt elements.
+            
+            </param>
+            <param name="Tilt_Voltage">
+            This parameter returns the voltage of the tilt element in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_tilt_voltages(System.Double[])">
+            <summary>
+            This function returns the voltages of all tilt elements.
+            </summary>
+            <param name="Tilt_Voltages">
+            This parameter returns the voltage of all tilt elements in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_tilt_voltages(System.Double[])">
+            <summary>
+            This function sets the voltages of all tilt elements.
+            </summary>
+            <param name="Tilt_Voltages">
+            This parameter sets the voltage of all tilt elements in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_tilt_amplitude_angle(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="Amplitute">
+            
+            </param>
+            <param name="Angle">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_voltages(System.Double[],System.Double[])">
+            <summary>
+            
+            </summary>
+            <param name="Segment_Voltages">
+            
+            </param>
+            <param name="Tilt_Voltages">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_voltages(System.Double[],System.Double[])">
+            <summary>
+            This function sets the voltages of all segments and all tilt elements.
+            </summary>
+            <param name="Segment_Voltages">
+            This parameter accepts an array of segment voltages in volts.
+            The array size is minimum (total no. of segments).
+            For the total number of segments call function get_device_configuration.
+            
+            Valid range: (Segment Voltage Min) ... (Segment Voltage Max)
+            
+            Call function get_device_configuration to get the valid voltage range.
+            </param>
+            <param name="Tilt_Voltages">
+            This parameter accepts an array of tilt element voltages in volts.
+            The array size is minimum (total no. tilt elements).
+            For the total number of tilt elements call function get_device_configuration.
+            
+            Valid range: (Voltage Tilt Min) ... (Voltage Tilt Max)
+            
+            Call function get_device_configuration to get the valid voltage range.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS             Get Segment Voltages operation successful
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_manufacturer_name(System.Text.StringBuilder)">
+            <summary>
+            Gets the Manufacturer Name
+            
+            </summary>
+            <param name="Manufacturer_Name">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS                Get the instrument name.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_instrument_name(System.Text.StringBuilder)">
+            <summary>
+            Get the model name of the deformable mirror (e.g. "").
+            </summary>
+            <param name="Instrument_Name">
+            Returns the model name of the deformable mirror.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS                Get the instrument name.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_instrument_name(System.String)">
+            <summary>
+            Sets the instrument name.
+            </summary>
+            <param name="Instrument_Name">
+            Instrument name with a maximal length of 10 characters.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Set the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_serial_Number(System.Text.StringBuilder)">
+            <summary>
+            Returns the serialnumber.
+            </summary>
+            <param name="Serial_Number">
+            This parameter indicates the Serial Number of the instrument.
+            
+            Buffer length has to be at least 31 Bytes (30 Byte SN + '\0').
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_serial_number(System.String)">
+            <summary>
+            This function sets the instrument's serial number.
+            </summary>
+            <param name="Serial_Number">
+            This parameter determines the Serial Number of the instrument.
+            Max. SN length is 30 Bytes + '\0'.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_user_text(System.Text.StringBuilder)">
+            <summary>
+            This function receives a user definable text stored in the instrument's nonvolatile memory.
+            </summary>
+            <param name="User_Text">
+            This parameter returns a user definable string.
+            
+            Note: 
+            The buffer must contain at least DM1_USER_TEXT_BUFFER_SIZE (61) elements (ViChar[DM1_USER_TEXT_BUFFER_SIZE]).
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_user_text(System.String)">
+            <summary>
+            This function transfers a user definable text and saves it in the instrument.
+            </summary>
+            <param name="User_Text">
+            This parameter specifies a user definable string.
+            
+            Note: 
+            The string will be truncated to DM1_USER_TEXT_BUFFER_SIZE - 1 (60) characters excluding the NUL character.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.update_firmware(System.String)">
+            <summary>
+            Updates the firmware with the specified firmware file
+            </summary>
+            <param name="Firmware_File">path to the binary firmware file</param>
+            <returns>VI_SUCCESS if transmitted successfully</returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.enable_event">
+            <summary>
+            Enables the event transmission.
+            Registered callback functions will be invoked if a status interrupt event occures.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.disable_event">
+            <summary>
+            Disables the event transmission.
+            Registered callback functions won't be invoked if a status interrupt event occures.
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.add_status_delegate(Thorlabs.TLDFM_32.Interop.TLDFM.StatusMessageCallback)">
+            <summary>
+            Add the delegate to be invoked if a message was pushed from the device.
+            </summary>
+            <param name="statusMessageCallback">delegate to be invoked</param>
+            <returns>Returns the native method invoke result.</returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_segment_count(System.UInt32@)">
+            <summary>
+            
+            </summary>
+            <param name="Segment_Count">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_segment_maximum(System.Double@)">
+            <summary>
+            
+            </summary>
+            <param name="Segment_Maximum">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_segment_minimum(System.Double@)">
+            <summary>
+            
+            </summary>
+            <param name="Segment_Minimum">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_tilt_count(System.UInt32@)">
+            <summary>
+            
+            </summary>
+            <param name="Tilt_Count">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_tilt_maximum(System.Double@)">
+            <summary>
+            
+            </summary>
+            <param name="Tilt_Maximum">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_tilt_minimum(System.Double@)">
+            <summary>
+            
+            </summary>
+            <param name="Tilt_Minimum">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_access_level(System.Char,System.String)">
+            <summary>
+            This function enables access special instrument functions.
+            
+            An access key is required prior to enter calls to some functions which are not allowed to the user.
+            </summary>
+            <param name="Access_Level">
+            This parameter Access Level determines a bit field of 8 bits. Each bit enables or disables a certain access level.
+            </param>
+            <param name="Access_Password">
+            Enter code to change the access level here.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_device_configuration(System.UInt32@,System.Double@,System.Double@,System.Double@,System.Int32@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            This function returns basic parameters of the instrument.
+            
+            Required access key: DM1_SERVICE_KEY
+            </summary>
+            <param name="Segment_Cnt">
+            This parameter returns the total number of segments.
+            </param>
+            <param name="Min_Segement_Voltage">
+            This parameter returns the minimum segment voltage in volts.
+            </param>
+            <param name="Max_Segment_Voltage">
+            This parameter returns the maximum segment voltage in volts.
+            </param>
+            <param name="Segment_Common_Voltage_Max">
+            This parameter returns the maximum segment common voltage in volts.
+            </param>
+            <param name="Tilt_Element_Cnt">
+            This parameter returns the number of tilt elements.
+            </param>
+            <param name="Min_Tilt_Voltage">
+            This parameter returns the minimum tilt element voltage in volts.
+            </param>
+            <param name="Max_Tilt_Voltage">
+            This parameter returns the maximum tilt element voltage in volts.
+            </param>
+            <param name="Tilt_Common_Voltage_Max">
+            This parameter returns the maximum tilt common voltage in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_device_configuration(System.UInt32,System.Double,System.Double,System.Double,System.Int32,System.Double,System.Double,System.Double)">
+            <summary>
+            This function sets basic parameters of the instrument.
+            
+            Required access key: DM1_SERVICE_KEY
+            </summary>
+            <param name="Segment_Cnt">
+            This parameter sets the total number of segments.
+            </param>
+            <param name="Min_Segement_Voltage">
+            This parameter sets the minimum segment voltage in volts.
+            </param>
+            <param name="Max_Segment_Voltage">
+            This parameter sets the maximum segment voltage in volts.
+            </param>
+            <param name="Segment_Common_Voltage_Max">
+            This parameter sets the maximum segment common voltage in volts.
+            </param>
+            <param name="Tilt_Element_Cnt">
+            This parameter sets the number of tilt elements.
+            </param>
+            <param name="Min_Tilt_Voltage">
+            This parameter sets the minimum tilt element voltage in volts.
+            </param>
+            <param name="Max_Tilt_Voltage">
+            This parameter sets the maximum tilt element voltage in volts.
+            </param>
+            <param name="Tilt_Common_Voltage_Max">
+            This parameter sets the maximum tilt common voltage in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_device_calibration(System.Double@,System.Double@,System.Double@)">
+            <summary>
+            This function returns calibration parameters of the instrument.
+            
+            Required access key: DM1_SERVICE_KEY
+            </summary>
+            <param name="Segment_Voltage_Compensation">
+            This parameter returns the calibrated 50% value of the segment common voltage in volts.
+            </param>
+            <param name="Tilt_Voltage_Compensation">
+            This parameter returns the calibrated 50% value of the tilt common voltage.
+            </param>
+            <param name="Tilt_Voltage">
+            This parameter returns the calibrated 50% value of the mirror/tilt single voltages.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_device_calibration(System.Double,System.Double,System.Double)">
+            <summary>
+            This function sets calibration parameters of the instrument.
+            
+            Required access key: DM1_SERVICE_KEY
+            </summary>
+            <param name="Segment_Voltage_Comp__50_">
+            This parameter sets the calibrated 50% value of the segment common voltage in volts.
+            </param>
+            <param name="Tilt_Voltage_Comp__50_">
+            This parameter sets the calibrated 50% value of the tilt common voltage.
+            </param>
+            <param name="Tilt_Voltage_50_">
+            This parameter sets the calibrated 50% value of the mirror/tilt single voltages.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_hysteresis_parameters(Thorlabs.TLDFM_32.Interop.DevicePart,System.UInt32@,System.Double@,System.Double[],System.Double[])">
+            <summary>
+            
+            </summary>
+            <param name="Target">
+            This parameter determines the target item.
+            
+            Valid values:
+              0   DFM_MIRROR
+              1   DFM_TILT
+            </param>
+            <param name="Count">
+            This parameter determines the number of hysteresis sample points to store.
+            </param>
+            <param name="Nonlinear_Factor">
+            This parameter determines the nonlinear factor used to correct the hysteresis curve.
+            </param>
+            <param name="Array_Treshold_Inverter">
+            This array contains Count numbers of inverse treshold values used to compensate for the hysteresis.
+            </param>
+            <param name="Array_Weight_Inverter">
+            This array contains Count numbers of inverse weight values used to compensate for the hysteresis.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.set_hysteresis_parameters(Thorlabs.TLDFM_32.Interop.DevicePart,System.UInt32,System.Double,System.Double[],System.Double[])">
+            <summary>
+            This function sets hysteresis parameters of the instrument.
+            
+            Required access key: DM1_SERVICE_KEY
+            </summary>
+            <param name="Target">
+            This parameter determines the target item.
+            
+            Valid values:
+              0   DFM_MIRROR
+              1   DFM_TILT
+            </param>
+            <param name="Count">
+            This parameter determines the number of hysteresis sample points to store.
+            </param>
+            <param name="Nonlinear_Factor">
+            This parameter determines the nonlinear factor used to correct the hysteresis curve.
+            </param>
+            <param name="Array_Treshold_Inverter">
+            This array contains Count numbers of inverse treshold values used to compensate for the hysteresis.
+            </param>
+            <param name="Array_Weight_Inverter">
+            This array contains Count numbers of inverse weight values used to compensate for the hysteresis.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.enable_hysteresis_compensation(Thorlabs.TLDFM_32.Interop.DevicePart,System.Boolean)">
+            <summary>
+            This function switches the hysteresis compensations of the Deformable Mirror on or off.
+            The mirror itself and it's tilt assembly can be controlled separately.
+            
+            </summary>
+            <param name="Target">
+            This parameter determines the target item.
+            
+            Valid values:
+              0   DFM_MIRROR
+              1   DFM_TILT
+            
+            </param>
+            <param name="State">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.enabled_hysteresis_compensation(Thorlabs.TLDFM_32.Interop.DevicePart,System.Boolean@)">
+            <summary>
+            This function switches the hysteresis compensations of the Deformable Mirror on or off.
+            The mirror itself and it's tilt assembly can be controlled separately.
+            
+            </summary>
+            <param name="Target">
+            This parameter determines the target item.
+            
+            Valid values:
+              0   DFM_MIRROR
+              1   DFM_TILT
+            
+            </param>
+            <param name="State">
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_measured_segment_voltage(System.UInt32,System.Double@)">
+            <summary>
+            Gets the measured single segment voltage
+            </summary>
+            <param name="Segment_Index">Select Segement by index</param>
+            <param name="Segment_Voltage">Measured Segment Voltage</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_measured_segment_voltages(System.Double[])">
+            <summary>
+            Gets the measured segment voltages
+            </summary>
+            <param name="Segment_Voltages">Measured Segment Voltages</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_measured_tilt_voltage(System.UInt32,System.Double@)">
+            <summary>
+            Gets the measured single arm voltage
+            </summary>
+            <param name="Tilt_Index">Select Segement by index</param>
+            <param name="Tilt_Voltage">Measured Arm Voltage</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_measured_tilt_voltages(System.Double[])">
+            <summary>
+            Gets the measured arm voltages
+            </summary>
+            <param name="Tilt_Voltages">Measured Arm Voltages</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_measured_voltages(System.Double[],System.Double[])">
+            <summary>
+            Gets the measured segment and arm voltages
+            </summary>
+            <param name="Segment_Voltages">Measured Segment Voltages</param>
+            <param name="Tilt_Voltages">Measured Arm Voltages</param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_feedback_voltage(System.Double@)">
+            <summary>
+            This function returns the voltage of a feedback signal applied to the input connector.
+            </summary>
+            <param name="Feedback_Voltage">
+            This parameter returns the feedback voltage in volts.
+            
+            Accepted voltage range: 0.0 ... 2.5 V
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_feedback_current(System.Double@)">
+            <summary>
+            This function returns the current in ?A of a feedback signal applied to the input connector.
+            </summary>
+            <param name="Feedback_Current">
+            This parameter returns the feedback current in ?A.
+            
+            Accepted current range: 1nA ... 10mA
+            
+            Note: The input current must not exceed 15 mA, otherwise incorrect readings occur.
+            
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_feedback(System.Double@,System.Double@)">
+            <summary>
+            This function returns the voltage and the current of two feedback signals applied to the input connector.
+            </summary>
+            <param name="Feedback_Voltage">
+            This parameter returns the feedback voltage in volts.
+            
+            Accepted voltage range: 0.0 ... 2.5 V
+            </param>
+            <param name="Feedback_Current">
+            This parameter returns the feedback current in ?A.
+            
+            Accepted current range: 1nA ... 10mA
+            
+            Note: The input current must not exceed 15 mA, otherwise incorrect readings occur.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_monitor_voltage(System.Double@)">
+            <summary>
+            This function allows to monitor the high voltage from the internal DCDC converter.
+            </summary>
+            <param name="Monitor_Voltage">
+            This parameter returns the monitor voltage of the DCDC converter in volts.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.get_temperatures(System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            This function returns the instrument temperatures.
+            </summary>
+            <param name="IC1_Temperatur">
+            This parameter returns the actual temperature of high voltage amplifier IC1 ?C.
+            </param>
+            <param name="IC2_Temperatur">
+            This parameter returns the actual temperature of high voltage amplifier IC2 ?C.
+            </param>
+            <param name="Mirror_Temperatur">
+            This parameter returns the actual temperature of optical mirror in ?C.
+            
+            Note: The real temperature of the mirror's optical surface may be different from this reading of the mirror holder.
+            </param>
+            <param name="Electronic_Temperatur">
+            This parameter returns the actual temperature of control electronics in ?C.
+            </param>
+            <returns>
+            Operational return status. Contains either a completion code or an error code. Instrument driver specific codes that may be returned in addition to the VISA error codes defined in VPP-4.3 and vendor specific codes, are as follows.
+            
+            Completition Codes
+            ----------------------------------------------------------------
+            VI_SUCCESS          Get the instrument name successful.
+            
+            
+            Vendor Specific Codes
+            ----------------------------------------------------------------
+            For error codes and descriptions see &lt;Error Message&gt;.
+            </returns>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.Dispose">
+            <summary>
+            Disposes Driver Object
+            </summary>
+        </member>
+        <member name="M:Thorlabs.TLDFM_32.Interop.TLDFM.Dispose(System.Boolean)">
+            <summary>
+            Clean up unmanaged code sources
+            </summary>
+            <param name="disposing">Specify if unmanaged objects have to be removed</param>
+        </member>
+    </members>
+</doc>
